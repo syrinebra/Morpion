@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
 
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center"
@@ -60,10 +61,6 @@
         android:layout_below="@+id/line4"
         android:layout_toRightOf="@+id/line2"/>
 
-
-
-
-
     <View
         android:id="@+id/line1"
         android:layout_width="@dimen/width_line"
@@ -108,7 +105,7 @@
     android:layout_height="wrap_content"
     android:layout_below="@id/bt7"
     android:layout_marginLeft="75dp"
-    android:layout_marginTop="@dimen/margin_tv"
+    android:layout_marginTop="75dp"
     android:text="Au tour du joueur: "/>
 
     <TextView
@@ -116,7 +113,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/bt7"
-        android:layout_marginTop="@dimen/margin_tv"
+        android:layout_marginTop="75dp"
         android:layout_marginLeft="200dp"
         android:text="X"/>
     <TextView
@@ -124,14 +121,15 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:layout_below="@id/bt7"
-    android:layout_marginTop="50dp"
+    android:layout_marginTop="150dp"
     android:text="Score Joueur X: "/>
+
     <TextView
         android:id="@+id/gagnantX"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/bt7"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="150dp"
         android:layout_marginLeft="110dp"
         android:text="0"/>
 
@@ -140,7 +138,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/bt9"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="150dp"
         android:layout_marginLeft="150dp"
         android:text="Score Joueur Y: "/>
     <TextView
@@ -148,8 +146,34 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/bt7"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="150dp"
         android:layout_marginLeft="260dp"
         android:text="0"/>
 
+    <TextView
+        android:id="@+id/winner"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/bt7"
+        android:layout_marginLeft="85dp"
+        android:layout_marginTop="283dp"
+        android:text="The Winner " />
+    <TextView
+        android:id="@+id/txtwinner"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/bt7"
+        android:layout_marginLeft="100dp"
+        android:layout_marginTop="320dp"
+        android:text="No One" />
+    <Button
+        android:id="@+id/tryagain"
+        android:layout_width="230dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/bt7"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="400dp"
+        android:text="Try Again"
+        android:background="@drawable/buttonstyle"
+        android:textColor="@color/white"/>
 </RelativeLayout>

@@ -9,7 +9,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-
 import java.util.ArrayList;
 
 public class GameActivity extends AppCompatActivity implements View.OnClickListener{
@@ -23,10 +22,13 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
     //2:O
     private int joueurEnCours=1;
     private TextView tvJoueur;
-    private TextView tvScoreX;
-    private TextView tvScoreY;
+     TextView tvScoreX;
+     TextView tvScoreY;
+     TextView txtwinner1;
     private int scoreX=0;
     private int scoreY=0;
+    private int k=0;
+    Button tryagain;
     ArrayList<Button> all_buttons=new ArrayList<>();
 
 
@@ -38,6 +40,7 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
         tvJoueur=(TextView)findViewById(R.id.joueur);
         tvScoreX=(TextView)findViewById(R.id.gagnantX);
         tvScoreY=(TextView)findViewById(R.id.gagnantY);
+        txtwinner1=(TextView)findViewById(R.id.txtwinner);
         Button bt1=(Button) findViewById(R.id.bt1);
         Button bt2=(Button) findViewById(R.id.bt2);
         Button bt3=(Button) findViewById(R.id.bt3);
@@ -47,7 +50,7 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
         Button bt7=(Button) findViewById(R.id.bt7);
         Button bt8=(Button) findViewById(R.id.bt8);
         Button bt9=(Button) findViewById(R.id.bt9);
-
+        tryagain=(Button)findViewById(R.id.tryagain);
         all_buttons.add(bt1);
         all_buttons.add(bt2);
         all_buttons.add(bt3);
@@ -58,12 +61,20 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
         all_buttons.add(bt8);
         all_buttons.add(bt9);
 
+
         for(Button bt: all_buttons){
             bt.setBackgroundDrawable(null);
             bt.setOnClickListener(this);
         }
+      //  while (k<4){
+        k++;
+      //}
 
-    }
+        if(k==4)
+           displayAlertDialog();
+       // int res=checkWinner();
+
+   }
     public void onClick(View view) {
         if(view.getBackground()!=null)
             return;
@@ -116,24 +127,25 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
             tvJoueur.setText("X");
         }
 
-
         int res=checkWinner();
-     displayAlertDialog(res);
+        k++;
+     Score(res);
+     Winner(res);
+     /*   for (Button bt : all_buttons) {
+            bt.setBackgroundDrawable(null);
+            bt.setOnClickListener(this);}*/
 
-    }
+
+     //displayAlertDialog(res);
+  }
+
+
     //0: partie non fini
     //1 : X
     //2: O
     //3: egalite
 
-    private void score(){
-        if (checkWinner()==1){
-         scoreX++;
-         tvScoreX.setText(scoreX);}
-   if (checkWinner()==2){
-         scoreY++;
-         tvScoreY.setText(scoreY);}
-    }
+
     private int checkWinner() {
 
         // on regrade s'il y a un gagnant sur les colonnes
@@ -141,13 +153,6 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
         for (int col = 0; col <= 2; col++) {
             if (plateau[col][0] != 0 && plateau[col][0] == plateau[col][1] && plateau[col][0] == plateau[col][2])
                 return plateau[col][0];
-            if(plateau[col][0]==1){
-                scoreX++;
-                tvScoreX.setText(scoreX);
-            }else{
-                scoreY++;
-                tvScoreY.setText(scoreY);
-            }
 
         }
 
@@ -155,14 +160,8 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
 
         for (int line = 0; line <= 2; line++) {
             if (plateau[0][line] != 0 && plateau[0][line] == plateau[1][line] && plateau[0][line] == plateau[2][line])
-                return plateau[line][0];
-            if(plateau[line][0]==1){
-                scoreX++;
-                tvScoreX.setText(scoreX);
-            }else{
-                scoreY++;
-                tvScoreY.setText(scoreY);
-            }
+                return plateau[0][line];
+
         }
 
         // on regrade s'il y a un gagnant sur la diagonale haut/gauche -> Bas/Droite
@@ -194,27 +193,96 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
         //Partie non fini
         return 0;
     }
-    private void displayAlertDialog(int res){
+    private void Score(int res){
+        if (res==0)
+            return;
+        tvScoreX.setText("");
+        tvScoreY.setText("");
+        if (res==1){
+            scoreX++;
+            tvScoreX.setText(""+scoreX);
+            tvScoreY.setText(""+scoreY);
+        }
+        if (res==2){
+            scoreY++;
+            tvScoreX.setText(""+scoreX);
+            tvScoreY.setText(""+scoreY);
+        }
+        if (res==3){
+            tvScoreX.setText(""+scoreX);
+            tvScoreY.setText(""+scoreY);}
+    }
 
+    private void Winner(int res){
 
         if(res==0)
+            return;
+        txtwinner1.setText("No Personne");
+
+        if(res==1)
+        { txtwinner1.setText("les X ont gagnées !");
+
+            for (Button bt : all_buttons) {
+                //bt.setBackgroundDrawable(null);
+                bt.setOnClickListener(null);}
+            tryagain.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    resetGame();
+                   /* for (Button bt : all_buttons) {
+                        //bt.setBackgroundDrawable(null);
+                        bt.setOnClickListener(this);}*/
+
+                }
+
+            });
+           /* for (Button bt : all_buttons) {
+                //bt.setBackgroundDrawable(null);
+                bt.setOnClickListener(this);}*/
+
+            }
+
+        if(res==2)
+    {   txtwinner1.setText("les O ont gagnées !");
+
+        for (Button bt : all_buttons) {
+           // bt.setBackgroundDrawable(null);
+            bt.setOnClickListener(null);
+        tryagain.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                resetGame();
+
+
+            }
+
+        });}
+       /* for (Button bt : all_buttons) {
+            //bt.setBackgroundDrawable(null);
+            bt.setOnClickListener(this);}*/}
+
+        if(res==3)
+            txtwinner1.setText(" Egalité !");
+
+    }
+
+  private void displayAlertDialog(){
+
+  /* if(res==0)
             return;
         String strTdDisplay="";
 
         if(res==1)
             strTdDisplay="les X ont gagnées !";
-      /*  scoreX++;
-        tvScoreX.setText(scoreX);*/
 
         if(res==2)
             strTdDisplay="les O ont gagnées !";
-        /*scoreY++;
-        tvScoreY.setText(scoreY);*/
+
         if(res==3)
-        strTdDisplay=" Egalité !";
+        strTdDisplay=" Egalité !";*/
         AlertDialog.Builder alertDialog=new AlertDialog.Builder(this);
         alertDialog.setTitle("Fin de la Partie");
-        alertDialog.setMessage(strTdDisplay);
+       // alertDialog.setMessage(strTdDisplay);
         alertDialog.setNeutralButton("Recommencer", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
@@ -228,6 +296,7 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
         alertDialog.show();
 
     }
+
     private void resetGame(){
         for (int col = 0; col <= 2; col++) {
             for (int line = 0; line <= 2; line++) {
@@ -235,5 +304,7 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
         for(Button bt : all_buttons){
             bt.setBackgroundDrawable(null);
         }
+        k++;
     }
+
 }
