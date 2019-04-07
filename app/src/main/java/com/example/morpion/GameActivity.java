@@ -2,6 +2,7 @@ package com.example.morpion;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -10,6 +11,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import java.util.ArrayList;
+
 
 public class GameActivity extends AppCompatActivity implements View.OnClickListener{
     //Tablaeu a deux dimensions
@@ -27,13 +29,14 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
      TextView txtwinner1;
     private int scoreX=0;
     private int scoreY=0;
-    private int k=0;
-    Button tryagain;
+    private int val=0;
+
     ArrayList<Button> all_buttons=new ArrayList<>();
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
 
@@ -50,7 +53,7 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
         Button bt7=(Button) findViewById(R.id.bt7);
         Button bt8=(Button) findViewById(R.id.bt8);
         Button bt9=(Button) findViewById(R.id.bt9);
-        tryagain=(Button)findViewById(R.id.tryagain);
+        Button tryagain=(Button)findViewById(R.id.tryagain);
         all_buttons.add(bt1);
         all_buttons.add(bt2);
         all_buttons.add(bt3);
@@ -60,21 +63,31 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
         all_buttons.add(bt7);
         all_buttons.add(bt8);
         all_buttons.add(bt9);
+      all_buttons.add(tryagain);
 
 
         for(Button bt: all_buttons){
             bt.setBackgroundDrawable(null);
             bt.setOnClickListener(this);
         }
-      //  while (k<4){
-        k++;
-      //}
+        while (val<3){
+        tryagain.setOnClickListener(new View.OnClickListener() {
 
-        if(k==4)
-           displayAlertDialog();
-       // int res=checkWinner();
+            @Override
+            public void onClick(View v) {
+                resetGame();
+                txtwinner1.setText("No one");
+    }});
+        val++; }
 
-   }
+
+    }
+    public  void Enregistrer(){
+
+        Intent autreActivity = new Intent(GameActivity.this, AutreActivity.class);
+        startActivity(autreActivity);
+
+    }
     public void onClick(View view) {
         if(view.getBackground()!=null)
             return;
@@ -106,10 +119,11 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.bt9:
                 plateau[2][2]=joueurEnCours;
                 break;
-
-            default:
-                return;
+            case R.id.tryagain:
+               resetGame();
+                break;
         }
+
         Drawable drawableJoueur;
         if(joueurEnCours==1)
             drawableJoueur= ContextCompat.getDrawable(this, R.drawable.croix);
@@ -128,16 +142,15 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
         }
 
         int res=checkWinner();
-        k++;
+
      Score(res);
      Winner(res);
-     /*   for (Button bt : all_buttons) {
-            bt.setBackgroundDrawable(null);
-            bt.setOnClickListener(this);}*/
 
 
-     //displayAlertDialog(res);
-  }
+     displayAlertDialog(res);
+ }
+
+
 
 
     //0: partie non fini
@@ -220,55 +233,36 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
         txtwinner1.setText("No Personne");
 
         if(res==1)
+
         { txtwinner1.setText("les X ont gagnées !");
 
-            for (Button bt : all_buttons) {
-                //bt.setBackgroundDrawable(null);
-                bt.setOnClickListener(null);}
-            tryagain.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    resetGame();
-                   /* for (Button bt : all_buttons) {
-                        //bt.setBackgroundDrawable(null);
-                        bt.setOnClickListener(this);}*/
 
-                }
+        /*for (Button bt : all_buttons) {
+                bt.setOnClickListener(null);
+            }*/}
 
-            });
-           /* for (Button bt : all_buttons) {
-                //bt.setBackgroundDrawable(null);
-                bt.setOnClickListener(this);}*/
-
-            }
 
         if(res==2)
-    {   txtwinner1.setText("les O ont gagnées !");
 
-        for (Button bt : all_buttons) {
-           // bt.setBackgroundDrawable(null);
-            bt.setOnClickListener(null);
-        tryagain.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                resetGame();
+    {
+        txtwinner1.setText("les O ont gagnées !");
 
-
-            }
-
-        });}
-       /* for (Button bt : all_buttons) {
+    /* for (Button bt : all_buttons) {
             //bt.setBackgroundDrawable(null);
-            bt.setOnClickListener(this);}*/}
+            bt.setOnClickListener(null);
+        }*/ }
+
 
         if(res==3)
             txtwinner1.setText(" Egalité !");
 
+
     }
 
-  private void displayAlertDialog(){
 
-  /* if(res==0)
+  private void displayAlertDialog(int res){
+
+        if(res==0)
             return;
         String strTdDisplay="";
 
@@ -279,14 +273,20 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
             strTdDisplay="les O ont gagnées !";
 
         if(res==3)
-        strTdDisplay=" Egalité !";*/
+        strTdDisplay=" Egalité !";
         AlertDialog.Builder alertDialog=new AlertDialog.Builder(this);
-        alertDialog.setTitle("Fin de la Partie");
-       // alertDialog.setMessage(strTdDisplay);
+        alertDialog.setTitle(strTdDisplay);
+      // alertDialog.setMessage(strTdDisplay);
         alertDialog.setNeutralButton("Recommencer", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 resetGame();
+            }
+        });
+        alertDialog.setNeutralButton("Enregistrer", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+            Enregistrer();
             }
         });
 
@@ -296,6 +296,38 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
         alertDialog.show();
 
     }
+/*private void displayAlertDialog1(int scoreX, int scoreY){
+        String ss="";
+        if(scoreX< scoreY){
+            ss="les Y ont gagnées la partie avec un score:";
+        }
+        if(scoreX> scoreY){
+        ss="les X ont gagnées la partie avec un score:";
+        }
+        if (scoreX==scoreY){
+        ss="Egalité";
+        }
+        AlertDialog.Builder alertDialog1=new AlertDialog.Builder(this);
+        alertDialog1.setTitle("Fin de La Partie!!");
+        alertDialog1.setMessage(ss);
+    if(scoreX< scoreY){
+        alertDialog1.setMessage(scoreY);
+    }
+    if(scoreX> scoreY){
+        alertDialog1.setMessage(scoreX);
+    } alertDialog1.setNeutralButton("Recommencer", new DialogInterface.OnClickListener() {
+        @Override
+        public void onClick(DialogInterface dialog, int which) {
+            resetGame();
+        }
+    });
+
+    alertDialog1.setCancelable(false);
+    alertDialog1.show();
+
+
+}*/
+
 
     private void resetGame(){
         for (int col = 0; col <= 2; col++) {
@@ -304,7 +336,8 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
         for(Button bt : all_buttons){
             bt.setBackgroundDrawable(null);
         }
-        k++;
+
     }
+
 
 }
