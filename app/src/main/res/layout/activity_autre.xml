@@ -7,20 +7,34 @@
     tools:context=".AutreActivity">
 
     <TextView
-        android:text="Tu as gagnée avec un Score:"
-        android:layout_width="370dp"
+        android:id="@+id/sco1"
+        android:text=""
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="100dp"
-        android:layout_marginRight="100dp"
+        android:layout_marginLeft="80dp"
+        android:layout_marginRight="0dp"
         android:layout_marginTop="20dp"
 
         android:textColor="@color/bluelight"/>
+   s
+
+    <TextView
+        android:id="@+id/sco"
+        android:layout_width="50dp"
+        android:layout_height="20dp"
+        android:layout_marginLeft="320dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="150dp"
+        android:text=""
+
+        android:textColor="@color/bluelight" />
     <EditText
         android:id="@+id/plain_text_input"
         android:layout_height="wrap_content"
         android:layout_width="250dp"
-        android:layout_marginLeft="65dp"
+        android:layout_marginLeft="75dp"
         android:layout_marginTop="65dp"
+
         android:inputType="text"/>
     <Button
         android:layout_marginTop="200dp"
@@ -30,4 +44,21 @@
         android:text="Enregistrer"
         android:background="@drawable/buttonstyle"
         android:textColor="@color/bluelight"/>
+    <ListView
+        android:layout_width="350dp"
+        android:layout_height="250dp"
+        android:layout_marginTop="350dp"
+        android:layout_marginLeft="25dp"
+        android:id="@+id/list"
+        android:layout_weight="1" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="75dp"
+        android:layout_marginLeft="20dp"
+        android:text="Nom" />
+
+
 </RelativeLayout>

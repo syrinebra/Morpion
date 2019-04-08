@@ -23,7 +23,7 @@
         android:background="@drawable/cerclebackground"
         />
 
-    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
         <TextView
@@ -35,23 +35,15 @@
 
             android:textColor="@color/white"/>
 
-        <ListView
-            android:background="@color/colorPrimary"
-            android:id="@+id/listView"
-            android:layout_width="230dp"
-            android:layout_height="250dp"
-            android:layout_marginLeft="50dp"
-            android:layout_marginTop="50dp"
 
-            />
 
         <Button
 
             android:layout_width="250dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="40dp"
-            android:layout_marginTop="320dp"
-            android:text="Let's  Statrt"
+            android:layout_marginTop="250dp"
+            android:text="Ancienne Partie"
             android:background="@drawable/buttonstyle"
             android:textColor="@color/white"/>
         <Button
@@ -59,10 +51,18 @@
             android:layout_width="250dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="40dp"
-            android:layout_marginTop="380dp"
-            android:text="UNE NOUVELLE PARTIE"
+            android:layout_marginTop="320dp"
+            android:text="Nouvelle PARTIE"
             android:background="@drawable/buttonstyle"
             android:textColor="@color/white"/>
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="85dp"
+            android:layout_marginTop="20dp"
+            app:srcCompat="@drawable/tt" />
 
     </RelativeLayout>
 

@@ -31,6 +31,7 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
     private int scoreY=0;
     private int val=0;
 
+
     ArrayList<Button> all_buttons=new ArrayList<>();
 
 
@@ -70,7 +71,7 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
             bt.setBackgroundDrawable(null);
             bt.setOnClickListener(this);
         }
-        while (val<3){
+
         tryagain.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -78,14 +79,23 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
                 resetGame();
                 txtwinner1.setText("No one");
     }});
-        val++; }
+
 
 
     }
     public  void Enregistrer(){
 
-        Intent autreActivity = new Intent(GameActivity.this, AutreActivity.class);
-        startActivity(autreActivity);
+        Intent intent = new Intent(GameActivity.this, AutreActivity.class);
+
+        if(scoreY>scoreX){
+            String str="les Y ont gagnées avec un score :";
+            intent.putExtra("score",scoreY);
+            intent.putExtra("textView",str);}else{
+            String str="les O on gagnées evec un score :";
+            intent.putExtra("textView",str);
+            intent.putExtra("score",scoreX);
+        }
+        startActivity(intent);
 
     }
     public void onClick(View view) {
@@ -126,15 +136,16 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
 
         Drawable drawableJoueur;
         if(joueurEnCours==1)
-            drawableJoueur= ContextCompat.getDrawable(this, R.drawable.croix);
+            drawableJoueur= ContextCompat.getDrawable(this, R.drawable.x);
         else
-            drawableJoueur=ContextCompat.getDrawable(this, R.drawable.cercle);
+            drawableJoueur=ContextCompat.getDrawable(this, R.drawable.c);
         view.setBackgroundDrawable(drawableJoueur);
 
 
         if (joueurEnCours==1){
             joueurEnCours=2;
             tvJoueur.setText("O");
+
         }
         else{
             joueurEnCours=1;
@@ -148,6 +159,7 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
 
 
      displayAlertDialog(res);
+
  }
 
 
@@ -266,6 +278,7 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
             return;
         String strTdDisplay="";
 
+
         if(res==1)
             strTdDisplay="les X ont gagnées !";
 
@@ -277,18 +290,19 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
         AlertDialog.Builder alertDialog=new AlertDialog.Builder(this);
         alertDialog.setTitle(strTdDisplay);
       // alertDialog.setMessage(strTdDisplay);
+
         alertDialog.setNeutralButton("Recommencer", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 resetGame();
+                val++;
+
             }
         });
-        alertDialog.setNeutralButton("Enregistrer", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-            Enregistrer();
-            }
-        });
+
+       if(val==3){
+           displayAlertDialog1();
+      }
 
 
 
@@ -296,29 +310,16 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
         alertDialog.show();
 
     }
-/*private void displayAlertDialog1(int scoreX, int scoreY){
-        String ss="";
-        if(scoreX< scoreY){
-            ss="les Y ont gagnées la partie avec un score:";
-        }
-        if(scoreX> scoreY){
-        ss="les X ont gagnées la partie avec un score:";
-        }
-        if (scoreX==scoreY){
-        ss="Egalité";
-        }
+private void displayAlertDialog1(){
+
         AlertDialog.Builder alertDialog1=new AlertDialog.Builder(this);
-        alertDialog1.setTitle("Fin de La Partie!!");
-        alertDialog1.setMessage(ss);
-    if(scoreX< scoreY){
-        alertDialog1.setMessage(scoreY);
-    }
-    if(scoreX> scoreY){
-        alertDialog1.setMessage(scoreX);
-    } alertDialog1.setNeutralButton("Recommencer", new DialogInterface.OnClickListener() {
+        alertDialog1.setTitle("Fin de La Partie");
+        alertDialog1.setMessage("Vous voulez enregistrer le meilleur Score?");
+
+    alertDialog1.setNeutralButton("Enregistrer", new DialogInterface.OnClickListener() {
         @Override
         public void onClick(DialogInterface dialog, int which) {
-            resetGame();
+            Enregistrer();
         }
     });
 
@@ -326,8 +327,7 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
     alertDialog1.show();
 
 
-}*/
-
+}
 
     private void resetGame(){
         for (int col = 0; col <= 2; col++) {
