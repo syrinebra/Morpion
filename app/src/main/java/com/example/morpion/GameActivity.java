@@ -91,7 +91,7 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
             String str="les Y ont gagnées avec un score :";
             intent.putExtra("score",scoreY);
             intent.putExtra("textView",str);}else{
-            String str="les O on gagnées evec un score :";
+            String str="les O ont gagnées avec un score :";
             intent.putExtra("textView",str);
             intent.putExtra("score",scoreX);
         }
@@ -335,6 +335,7 @@ private void displayAlertDialog1(){
                 plateau[col][line]=0;}}
         for(Button bt : all_buttons){
             bt.setBackgroundDrawable(null);
+
         }
 
     }

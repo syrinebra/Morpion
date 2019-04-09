@@ -36,25 +36,26 @@
             android:textColor="@color/white"/>
 
 
-
         <Button
-
+            android:id="@+id/btnAfich"
             android:layout_width="250dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="40dp"
             android:layout_marginTop="250dp"
-            android:text="Ancienne Partie"
             android:background="@drawable/buttonstyle"
-            android:textColor="@color/white"/>
+
+            android:text="Ancienne Partie"
+            android:textColor="@color/white" />
+
         <Button
-            android:onClick="Start"
             android:layout_width="250dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="40dp"
             android:layout_marginTop="320dp"
-            android:text="Nouvelle PARTIE"
             android:background="@drawable/buttonstyle"
-            android:textColor="@color/white"/>
+            android:onClick="Start"
+            android:text="Nouvelle PARTIE"
+            android:textColor="@color/white" />
 
         <ImageView
             android:id="@+id/imageView"
