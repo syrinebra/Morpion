@@ -43,7 +43,7 @@
             android:layout_marginLeft="40dp"
             android:layout_marginTop="250dp"
             android:background="@drawable/buttonstyle"
-
+            android:onClick="Restart"
             android:text="Ancienne Partie"
             android:textColor="@color/white" />
 

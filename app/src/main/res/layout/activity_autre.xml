@@ -8,20 +8,19 @@
 
     <TextView
         android:id="@+id/sco1"
-        android:text=""
-        android:layout_width="wrap_content"
+        android:layout_width="220dp"
         android:layout_height="wrap_content"
         android:layout_marginLeft="80dp"
-        android:layout_marginRight="0dp"
         android:layout_marginTop="20dp"
+        android:text=""
 
-        android:textColor="@color/bluelight"/>
+        android:textColor="@color/bluelight" />
 
 
     <TextView
         android:id="@+id/sco"
-        android:layout_width="50dp"
-        android:layout_height="20dp"
+        android:layout_width="47dp"
+        android:layout_height="wrap_content"
         android:layout_marginLeft="320dp"
         android:layout_marginTop="20dp"
         android:layout_marginRight="150dp"
@@ -55,6 +54,16 @@
         android:layout_marginTop="75dp"
         android:layout_marginLeft="20dp"
         android:text="Nom" />
+
+    <Button
+        android:id="@+id/bView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="260dp"
+        android:layout_marginLeft="170dp"
+        android:background="@drawable/buttonstyle"
+        android:textColor="@color/bluelight"
+        android:text="Liste" />
 
 
 </RelativeLayout>

@@ -20,11 +20,14 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         afficher = (Button) findViewById(R.id.btnAfich);
 
-
-Affichage();
+        dbManager= new DBManager(this);
+//Affichage();
 
     }
-
+/*public void Restart(View v){
+    Intent MyListActivity = new Intent(MainActivity.this, List.class);
+    startActivity(MyListActivity);
+}*/
 
     public void Start(View v) {
         TextView txtclose;
@@ -33,7 +36,7 @@ Affichage();
 
     }
 
-    void Affichage() {
+ /*   void Affichage() {
         afficher.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -58,5 +61,5 @@ Affichage();
         builder.setMessage(message);
         builder.setCancelable(true);
         builder.show();
-    }
+    }*/
 }

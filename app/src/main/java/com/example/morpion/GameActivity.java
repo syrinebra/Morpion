@@ -27,10 +27,10 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
      TextView tvScoreX;
      TextView tvScoreY;
      TextView txtwinner1;
-    private int scoreX=0;
-    private int scoreY=0;
-    private int val=0;
-
+    private Integer scoreX=0;
+    private Integer scoreY=0;
+    private Integer val=0;
+    DBManager databaseManager;
 
     ArrayList<Button> all_buttons=new ArrayList<>();
 
@@ -81,19 +81,22 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
     }});
 
 
-
     }
     public  void Enregistrer(){
-
+        final String gagnantXSaisi= tvScoreX.getText().toString();
+        final  String gagnantYSaisi= tvScoreY.getText().toString();
         Intent intent = new Intent(GameActivity.this, AutreActivity.class);
 
-        if(scoreY>scoreX){
+          if(scoreY>scoreX){
             String str="les Y ont gagnées avec un score :";
-            intent.putExtra("score",scoreY);
-            intent.putExtra("textView",str);}else{
+            intent.putExtra("textView",str);
+            intent.putExtra("score",gagnantYSaisi);
+
+          }
+          else{
             String str="les O ont gagnées avec un score :";
             intent.putExtra("textView",str);
-            intent.putExtra("score",scoreX);
+            intent.putExtra("score",gagnantXSaisi);
         }
         startActivity(intent);
 
@@ -319,6 +322,7 @@ private void displayAlertDialog1(){
     alertDialog1.setNeutralButton("Enregistrer", new DialogInterface.OnClickListener() {
         @Override
         public void onClick(DialogInterface dialog, int which) {
+
             Enregistrer();
         }
     });

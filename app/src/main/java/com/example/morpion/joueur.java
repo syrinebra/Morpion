@@ -1,29 +1,26 @@
 package com.example.morpion;
 
 public class joueur {
-
-    int score;
+    int id;
+    String score;
     String nom;
 public joueur()
 {
     super();
-}    public  joueur(int score, String nom){
+}    public  joueur( String nom, String score){
         super();
+        this.id=id;
         this.score=score;
         this.nom=nom;
     }
-
-    public int getScore(){
+    public int getId(){ return id;}
+    public String getScore(){
         return score;
     }
-    public void setScore(int score){
-        this.score=score;
-    }
+
     public String getNom(){
         return nom;
     }
-    public void setNom(String nom){
-        this.nom=nom;
-    }
+
 
 }
