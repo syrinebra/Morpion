@@ -4,12 +4,8 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import java.util.ArrayList;
-import java.util.List;
 import android.util.Log;
 import android.content.ContentValues;
-import java.util.Date;
-import java.sql.SQLException;
 public class DBManager extends SQLiteOpenHelper {
 
 

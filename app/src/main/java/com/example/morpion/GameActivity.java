@@ -37,7 +37,6 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
 
@@ -66,7 +65,6 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
         all_buttons.add(bt9);
       all_buttons.add(tryagain);
 
-
         for(Button bt: all_buttons){
             bt.setBackgroundDrawable(null);
             bt.setOnClickListener(this);
@@ -78,34 +76,36 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
             public void onClick(View v) {
                 resetGame();
                 txtwinner1.setText("No one");
-    }});
-
-
-    }
+    }});}
     public  void Enregistrer(){
         final String gagnantXSaisi= tvScoreX.getText().toString();
         final  String gagnantYSaisi= tvScoreY.getText().toString();
         Intent intent = new Intent(GameActivity.this, AutreActivity.class);
 
-          if(scoreY>scoreX){
-            String str="les Y ont gagnées avec un score :";
+          if(scoreY==scoreX){
+            String str="egalité avec un score :";
             intent.putExtra("textView",str);
             intent.putExtra("score",gagnantYSaisi);
 
           }
-          else{
-            String str="les O ont gagnées avec un score :";
+          else if (scoreY>scoreX){
+            String str="le Joueur X a gagné avec un score :";
             intent.putExtra("textView",str);
-            intent.putExtra("score",gagnantXSaisi);
-        }
+            intent.putExtra("score",gagnantYSaisi);
+        }else {
+              String str= "le Joueur Y a gagné avec un score :";
+              intent.putExtra("textView",str);
+              intent.putExtra("score",gagnantXSaisi);
+          }
         startActivity(intent);
 
     }
+
     public void onClick(View view) {
         if(view.getBackground()!=null)
             return;
         switch(view.getId()){
-            case R.id.bt1:      //if(view.getId() == R.id.bt1)
+            case R.id.bt1:
                 plateau[0][0]=joueurEnCours;
                 break;
             case R.id.bt2:
@@ -134,83 +134,47 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case R.id.tryagain:
                resetGame();
-                break;
-        }
-
+                break;}
         Drawable drawableJoueur;
         if(joueurEnCours==1)
             drawableJoueur= ContextCompat.getDrawable(this, R.drawable.x);
         else
             drawableJoueur=ContextCompat.getDrawable(this, R.drawable.c);
         view.setBackgroundDrawable(drawableJoueur);
-
-
         if (joueurEnCours==1){
             joueurEnCours=2;
-            tvJoueur.setText("O");
-
-        }
+            tvJoueur.setText("O"); }
         else{
             joueurEnCours=1;
-            tvJoueur.setText("X");
-        }
-
+            tvJoueur.setText("X"); }
         int res=checkWinner();
 
      Score(res);
      Winner(res);
-
-
-     displayAlertDialog(res);
-
- }
-
-
-
-
-    //0: partie non fini
-    //1 : X
-    //2: O
-    //3: egalite
-
+     displayAlertDialog(res); }
 
     private int checkWinner() {
-
         // on regrade s'il y a un gagnant sur les colonnes
-
-        for (int col = 0; col <= 2; col++) {
+       for (int col = 0; col <= 2; col++) {
             if (plateau[col][0] != 0 && plateau[col][0] == plateau[col][1] && plateau[col][0] == plateau[col][2])
-                return plateau[col][0];
-
-        }
-
+                return plateau[col][0]; }
         // on regrade s'il y a un gagnant sur les lignes
-
         for (int line = 0; line <= 2; line++) {
             if (plateau[0][line] != 0 && plateau[0][line] == plateau[1][line] && plateau[0][line] == plateau[2][line])
-                return plateau[0][line];
-
-        }
-
+                return plateau[0][line]; }
         // on regrade s'il y a un gagnant sur la diagonale haut/gauche -> Bas/Droite
-
         if(plateau[0][0]!=0 && plateau[0][0]==plateau[1][1]&&plateau[0][0]==plateau[2][2])
             return  plateau[0][0];
-
         // on regrade s'il y a un gagnant sur la diagonale haut/droite -> Bas/gauche
-
         if(plateau[2][0]!=0 && plateau[2][0]==plateau[1][1]&&plateau[2][0]==plateau[0][2])
             return plateau[2][0];
-
-        //Egalité
-
+       //Egalité
         boolean isPlateauPlein= true;
         for (int col = 0; col <= 2; col++) {
             for (int line = 0; line <= 2; line++) {
                 if(plateau[col][line]==0){
                     isPlateauPlein=false;
-                    break;
-                }
+                    break; }
             }
             if (!isPlateauPlein)
                 break;
@@ -250,11 +214,7 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
         if(res==1)
 
         { txtwinner1.setText("les X ont gagnées !");
-
-
-        /*for (Button bt : all_buttons) {
-                bt.setOnClickListener(null);
-            }*/}
+        }
 
 
         if(res==2)
@@ -262,10 +222,7 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
     {
         txtwinner1.setText("les O ont gagnées !");
 
-    /* for (Button bt : all_buttons) {
-            //bt.setBackgroundDrawable(null);
-            bt.setOnClickListener(null);
-        }*/ }
+   }
 
 
         if(res==3)
@@ -299,7 +256,6 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
             public void onClick(DialogInterface dialog, int which) {
                 resetGame();
                 val++;
-
             }
         });
 

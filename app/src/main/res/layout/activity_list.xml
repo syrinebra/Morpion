@@ -7,19 +7,24 @@
     tools:context=".List">
 
     <TextView
+        android:id="@+id/titre"
         android:layout_width="300dp"
+        android:textSize="22dp"
+        android:textStyle="bold"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="150dp"
-        android:layout_marginRight="130dp"
+        android:layout_marginLeft="120dp"
+        android:layout_marginRight="100dp"
+
+        android:layout_marginTop="20dp"
         android:text="TIC TAC TOE"
         android:textColor="@color/bluelight" />
 
     <ListView
         android:id="@+id/list"
         android:layout_width="350dp"
-        android:layout_height="250dp"
+        android:layout_height="350dp"
         android:layout_marginLeft="25dp"
-        android:layout_marginTop="80dp"
+        android:layout_marginTop="150dp"
         android:layout_weight="1" />
 
 

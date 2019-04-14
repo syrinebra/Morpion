@@ -112,33 +112,31 @@
     android:id="@+id/auTourDe"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:layout_below="@id/bt7"
     android:layout_marginLeft="75dp"
-    android:layout_marginTop="75dp"
+    android:layout_marginTop="375dp"
     android:text="Au tour du joueur: "/>
 
     <TextView
         android:id="@+id/joueur"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/bt7"
-        android:layout_marginTop="75dp"
+        android:layout_marginTop="375dp"
         android:layout_marginLeft="200dp"
         android:text="X"/>
     <TextView
     android:id="@+id/ScoreX"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:layout_below="@id/bt7"
-    android:layout_marginTop="150dp"
+
+    android:layout_marginTop="420dp"
     android:text="Score Joueur X: "/>
 
     <TextView
         android:id="@+id/gagnantX"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/bt7"
-        android:layout_marginTop="150dp"
+
+        android:layout_marginTop="420dp"
         android:layout_marginLeft="110dp"
         android:text="0"/>
 
@@ -146,16 +144,14 @@
         android:id="@+id/ScoreY"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/bt9"
-        android:layout_marginTop="150dp"
+        android:layout_marginTop="420dp"
         android:layout_marginLeft="150dp"
         android:text="Score Joueur Y: "/>
     <TextView
         android:id="@+id/gagnantY"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/bt7"
-        android:layout_marginTop="150dp"
+        android:layout_marginTop="420dp"
         android:layout_marginLeft="260dp"
         android:text="0"/>
 
@@ -163,17 +159,15 @@
         android:id="@+id/winner"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/bt7"
-        android:layout_marginLeft="85dp"
-        android:layout_marginTop="283dp"
-        android:text="The Winner " />
+        android:layout_marginLeft="95dp"
+        android:layout_marginTop="483dp"
+        android:text="Le Gangnant " />
     <TextView
         android:id="@+id/txtwinner"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/bt7"
-        android:layout_marginLeft="100dp"
-        android:layout_marginTop="320dp"
+        android:layout_marginLeft="110dp"
+        android:layout_marginTop="520dp"
         android:text="No One" />
     <Button
         android:id="@+id/tryagain"
@@ -181,8 +175,8 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/bt7"
         android:layout_marginLeft="20dp"
-        android:layout_marginTop="400dp"
-        android:text="Try Again"
+        android:layout_marginTop="350dp"
+        android:text="Rejouer"
         android:background="@drawable/buttonstyle"
         android:textColor="@color/white"
         android:onClick="Enregistrer"/>

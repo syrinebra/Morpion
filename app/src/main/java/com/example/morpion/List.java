@@ -23,15 +23,12 @@ public class List extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list);
-
-
         ListView listView = (ListView) findViewById(R.id.list);
-        DBM = new DBManager(this);
 
+        DBM = new DBManager(this);
         scoretxt = "";
         nomtxt = "";
         Intent intent = getIntent();
-
         if (intent != null) {
             scoretxt = intent.getStringExtra("scoretxt");
             nomtxt = intent.getStringExtra("nomtxt");
@@ -44,34 +41,15 @@ public class List extends AppCompatActivity {
         ArrayList<joueur> list = new ArrayList<>();
 
         if (data.getCount() != 0) {
-
-
             while (data.moveToNext()) {
                 list.add(new joueur(data.getString(1), data.getString(2)));
-               // ListAdapter listAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, list);
+
                 ArrayAdapter<joueur> itemsAdapter =
 
                         adapter = new JoueurArrayAdapter(List.this , list);
 
-                listViewScore.setAdapter(adapter);
-
-
-            }
-            //ArrayList<joueur> list=new ArrayList<>();
-            //Cursor data= DBM.getJoueur();
-       /*ArrayList<String> theList = new ArrayList<>();
-    Cursor data = DBM.getListContents();
-        if(data.getCount()==0){
-            Toast.makeText(List.this,"The database was empty!!",Toast.LENGTH_LONG).show();
-        }else{
-            while (data.moveToNext()){
-                theList.add(data.getString(1));
-                ListAdapter listAdapter=new ArrayAdapter<>(this, android.R.layout.simple_list_item_1,theList);
-                listView.setAdapter(listAdapter);
-            }
-        }*/
-        }
-      }
+                listViewScore.setAdapter(adapter); } } }
+                
     public void addData (String nom, String score) {
 
         boolean insertData = DBM.addData(nom, score);
